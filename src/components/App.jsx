@@ -4,10 +4,25 @@ import SearchBar from './SearchBar/SearchBar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Loader from './Loader/Loader';
 import LoadMoreBtn from './LoadMoreBtn/LoadMoreBtn';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import Modal from 'react-modal';
 import ImageModal from './ImageModal/ImageModal';
 import ErrorMessage from './ErrorMessage/ErrorMessage';
 import toast, { Toaster } from 'react-hot-toast';
 import css from './App.module.css';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+Modal.setAppElement('#root');
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,7 +31,7 @@ const App = () => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = React.useState(false);
 
   const accessKey = 'i3pHdLQy2TjLJVZoPeWgDjlGIKbeJ4MRJWtoiz2Y8Z8';
 
@@ -83,11 +98,13 @@ const App = () => {
           isOpen={modalIsOpen}
           image={selectedImage}
           onClose={closeModal}
+          style={customStyles}
         />
       )}
       <Toaster />
     </div>
   );
 };
-
+const root = createRoot(document.getElementById('root'));
+root.render(<App />);
 export default App;

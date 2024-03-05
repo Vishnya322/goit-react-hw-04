@@ -1,18 +1,19 @@
-import Modal from 'react-modal';
+import ReactModal from 'react-modal';
+import './ImageModal.modal.css';
 
 const ImageModal = ({ isOpen, image, onClose }) => {
   return (
-    <Modal
+    <ReactModal
       isOpen={isOpen}
       onRequestClose={onClose}
       contentLabel="Image Modal"
       className="modal"
-      overlayClassName="overlay"
+      overlayClassName="modal-overlay"
     >
-      <div>
+      <div className="modal-content">
         {image && <img src={image.urls.regular} alt={image.alt_description} />}
       </div>
-    </Modal>
+    </ReactModal>
   );
 };
 
