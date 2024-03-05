@@ -8,7 +8,6 @@ import ImageModal from './ImageModal/ImageModal';
 import ErrorMessage from './ErrorMessage/ErrorMessage';
 import toast, { Toaster } from 'react-hot-toast';
 import css from './App.module.css';
-// import { fetchImages } from '././gallery-api';
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -19,35 +18,20 @@ const App = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  axios.defaults.baseURL = 'https://api.unsplash.com';
   const accessKey = 'i3pHdLQy2TjLJVZoPeWgDjlGIKbeJ4MRJWtoiz2Y8Z8';
 
   useEffect(() => {
-    // const apiUrl = `https://api.unsplash.com/search/photos?query=${searchTerm}&page=${page}&client_id=${accessKey}`;
+    const apiUrl = `https://api.unsplash.com/search/photos?query=${searchTerm}&page=${page}&per_page=12&orientation=landscape&client_id=${accessKey}`;
 
-    const fetchImages = async (searchTerm, page) => {
+    const fetchImages = async () => {
       try {
         setLoading(true);
-
-        const response = await axios.get('/search/photos', {
-          params: {
-            page,
-            query: searchTerm,
-            orientation: 'landscape',
-            per_page: 12,
-          },
-          headers: {
-            Authorization:
-              'Client-ID  PJg161txj8lAp0Kb6qG7H-0pfmcm4_agAZPWFBwVr5E',
-            'Accept-Version': 'V1',
-          },
-        });
-
-        setImages(prevImages => {
-          return page === 1
+        const response = await axios.get(apiUrl);
+        setImages(prevImages =>
+          page === 1
             ? response.data.results
-            : [...prevImages, ...response.data.results];
-        });
+            : [...prevImages, ...response.data.results]
+        );
       } catch (error) {
         setError('Error fetching images. Please try again.');
       } finally {

@@ -1,5 +1,7 @@
+import css from './ErrorMessage.module.css';
+
 const ErrorMessage = ({ message }) => {
-  return <div className="error-message">{message}</div>;
+  return <div className={css.error}>{message}</div>;
 };
 
 export default ErrorMessage;

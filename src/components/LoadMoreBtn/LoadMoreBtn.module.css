@@ -1,0 +1,12 @@
+.loaderButton {
+  width: 150px;
+  height: 50px;
+  border-radius: 50%;
+  display: block;
+  margin: 15px auto;
+  position: relative;
+  color: #bb10aa;
+  box-sizing: border-box;
+  background: #efd9ec;
+  box-shadow: 2px 5px 5px rgba(119, 76, 115, 0.5);
+}
