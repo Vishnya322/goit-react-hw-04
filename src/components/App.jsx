@@ -77,7 +77,9 @@ const App = () => {
 
   const openModal = image => {
     setSelectedImage(image);
-    setModalIsOpen(true);
+    if (!modalIsOpen) {
+      setModalIsOpen(true);
+    }
   };
 
   const closeModal = () => {
