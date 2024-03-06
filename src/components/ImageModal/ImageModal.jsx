@@ -2,6 +2,13 @@ import ReactModal from 'react-modal';
 import './ImageModal.modal.css';
 
 const ImageModal = ({ isOpen, image, onClose }) => {
+  const imageUrl =
+    image && image.urls && image.urls.regular ? image.urls.regular : '';
+  const altDescription =
+    image && image.alt_description
+      ? image.alt_description
+      : 'Image Description';
+
   return (
     <ReactModal
       isOpen={isOpen}
@@ -11,7 +18,7 @@ const ImageModal = ({ isOpen, image, onClose }) => {
       overlayClassName="modal-overlay"
     >
       <div className="modal-content">
-        {image && <img src={image.urls.regular} alt={image.alt_description} />}
+        {imageUrl && <img src={imageUrl} alt={altDescription} />}
       </div>
     </ReactModal>
   );
