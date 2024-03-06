@@ -4,7 +4,6 @@
   flex-shrink: 0;
   border-radius: 6px;
   color: rgb(179, 145, 179);
-  border: 1px solid #6b0e57;
   box-shadow: 2px 5px 5px rgba(119, 76, 115, 0.5);
   overflow: hidden;
 }
